@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+
+  web:
+    build: .
+    command: poetry run python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=admin123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
+
+  rabbitmq:
+    image: "rabbitmq:3" # Use the management plugin version if needed
+    ports:
+      - "5672:5672"
+
+volumes:
+  postgres_data:

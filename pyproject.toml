@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "yuhu-challenge"
+version = "0.1.0"
+description = ""
+authors = ["aHardReset <ing.aarongaribay@outlook.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^5.0.6"
+psycopg2-binary = "^2.9.9"
+djangorestframework = "^3.15.1"
+django-dramatiq = "^0.11.6"
+dramatiq = {extras = ["rabbitmq", "watch"], version = "^1.17.0"}
+python-dotenv = "^1.0.1"
+django-ses = "^4.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

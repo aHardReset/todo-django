@@ -1,0 +1,17 @@
+{% extends "todos/base_generic.html" %}
+
+{% block content %}
+<h2>Edit To-Do Item</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+   
+    <div class="buttons-container">
+        <button type="submit">Save Changes</button>
+        <a href="{% url 'todos:list' %}" class="modify-btn">Return</a>
+    </div>
+</form>
+
+
+{% endblock %}

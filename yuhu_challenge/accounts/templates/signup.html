@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+</head>
+<body>
+    <ul>
+        <li><a href="{% url 'login' %}">Login</a></li>
+        {% if user.is_authenticated %}
+            <li>Welcome, {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></li>
+        {% endif %}
+    </ul>
+    <h2>Signup Form</h2>
+    <form method="post" action="{% url 'signup' %}">
+        {% csrf_token %}
+        <!-- Email field will be rendered automatically -->
+        <input type="text" name="username" placeholder="Username">
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="password1" placeholder="Password">
+        <input type="password" name="password2" placeholder="Confirm Password">
+        <button type="submit">Sign Up</button>
+    </form>
+
+    {% if errors %}
+        <div class="error-messages">
+            <ul>
+                {% for field, errors in errors.items %}
+                    <li>{{ field }}:</li>
+                    <ul>
+                        {% for error in errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</body>
+</html>
