@@ -14,6 +14,12 @@
 .item-info {
   flex-grow: 1;
   margin-right: 10px; 
+  align-items: center;
+  display: flex;
+}
+
+.item-values {
+  padding-left: 30px;
 }
 
 .action-buttons {
@@ -35,8 +41,8 @@
   margin-top: 20px;
 }
 
-.modify-btn {
-  background-color: #00ff80; 
+.button-anchor-secondary {
+  background-color: #01662b; 
   color: white;
   border: none;
   padding: 8px 12px; 
@@ -49,35 +55,45 @@
   transition-duration: 0.4s; 
 }
 
-.modify-btn:hover {
-  background-color: #00b345; 
+.button-anchor-secondary:hover {
+  background-color: #03883a; 
 }
 
+.button {
+  border: none;
+  padding: 8px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
 
-button[type="submit"] {
+.button-primary {
   background-color: #007bff;
   color: white;
-  border: none;
-  padding: 8px 12px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  margin: 4px 2px;
-  cursor: pointer;
-  transition-duration: 0.4s;
 }
 
-button[type="reset"] {
-  background-color: #f44336;
+.button-primary:hover {
+  background-color: #0095ff; 
+}
+
+.button-secondary {
+  background-color: #01662b; 
   color: white;
-  border: none;
-  padding: 8px 12px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  margin: 4px 2px;
-  cursor: pointer;
-  transition-duration: 0.4s;
+}
+
+.button-secondary:hover {
+  background-color: #03883a; 
+}
+
+.button-warning {
+  background-color: #e10808d8;
+  color: white;
+}
+
+.button-warning:hover {
+  background-color: #fd3737d8; 
 }

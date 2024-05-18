@@ -6,28 +6,35 @@
     {% csrf_token %}
     {{ form.as_p }}
     <div class="buttons-container">
-        <button type="submit">Add New Task</button>
-        <button type="reset">Clear form</button>
+        <button type="submit" class="button button-primary">Add New Task</button>
+        <button type="reset" class="button button-warning">Clear form</button>
     </div>
 </form>
 <div class="todos">
 {% for todo in todos %}
 <div class="todo-item">
     <div class="item-info">
-        <strong>{{ todo.name }}</strong> <strong>-</strong>
-        {% if todo.description %}
-            <span>{{ todo.description }}</span>
-        {% else %}
-            <span>No Description</span>
-        {% endif %}<strong>-</strong>
-        <i>{{ todo.user.email }}</i>
+        <div class="item-values">
+            <strong>{{ todo.name }}</strong> <strong>-</strong>
+            {% if todo.description %}
+                <span>{{ todo.description }}</span>
+            {% else %}
+                <span>No Description</span>
+            {% endif %}<strong>-</strong>
+
+            {% if todo.due_date %}
+                <span>{{ todo.due_date|timeuntil }}  <strong>-</strong>
+            {% endif %}
+        
+            <i>{{ todo.user.email }}</i>
+        </div>
     </div>
     <div class="action-buttons">
         <form method="post" action="{% url 'todos:delete' todo.id %}">
             {% csrf_token %}
-            <button type="submit">Done</button>
+            <button type="submit" class="button button-warning">Delete</button>
         </form> 
-        <a href="{% url 'todos:update' todo.id %}" class="modify-btn" >Modify</a>
+        <a href="{% url 'todos:update' todo.id %}" class="button-anchor-secondary" >Modify</a>
     </div>
 </div>
 

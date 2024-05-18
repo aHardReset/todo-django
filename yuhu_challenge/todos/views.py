@@ -18,7 +18,10 @@ class CombinedTodoView(LoginRequiredMixin, TemplateView):
         context = {}
         context["form"] = self.form_create()
         paginator = Paginator(
-            self.model.objects.filter(user__email=request.user.email), 5
+            self.model.objects.filter(user__email=request.user.email).order_by(
+                "-created_at"
+            ),
+            5,
         )
         page_number = 1
         form = self.form_create()
