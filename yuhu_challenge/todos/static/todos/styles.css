@@ -133,3 +133,16 @@
   background-color: #0056b3;
   color: white;
 }
+
+/* Styles for incomplete tasks */
+.todo-item-text {
+  background-color: #f9f9f9; /* Light grey background for incomplete tasks */
+  color: #333; /* Darker text for readability */
+}
+
+/* Styles for completed tasks */
+.todo-item-text-done {
+  background-color: #0791e8; /* Light green background for completed tasks */
+  color: #01014f; /* Dark green text for contrast */
+  text-decoration: line-through; /* Strike through the text to indicate completion */
+}
