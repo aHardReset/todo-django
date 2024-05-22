@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Default Title{% endblock %}</title>
+    <title>{% block title %}Django To-Do{% endblock %}</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'todos/styles.css' %}">
 </head>
 <body>
     <header>
         <nav>
-            <a href="{% url 'home' %}">Home</a>
+            Time to get things done {{ user.username }} ! | <a href="{% url 'logout' %}">Logout</a>
         </nav>
     </header>
 

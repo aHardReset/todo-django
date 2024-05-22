@@ -1,6 +1,8 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
+from django.http import HttpResponse
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import TemplateView
 from django.views.generic.edit import DeleteView, UpdateView
 
@@ -18,7 +20,10 @@ class CombinedTodoView(LoginRequiredMixin, TemplateView):
         context = {}
         context["form"] = self.form_create()
         paginator = Paginator(
-            self.model.objects.filter(user__email=request.user.email), 5
+            self.model.objects.filter(user__email=request.user.email).order_by(
+                "-created_at"
+            ),
+            5,
         )
         page_number = 1
         form = self.form_create()
@@ -59,3 +64,18 @@ class ToDoUpdateView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+
+
+import json
+
+
+class ToogleToDoView(View):
+    model = ToDoItem
+
+    def patch(self, request, *args, **kwargs):
+        data = json.loads(request.body)
+        pk = data.get("pk")
+        record = self.model.objects.get(pk=pk)
+        record.is_done = not record.is_done
+        record.save()
+        return HttpResponse(status=204)
